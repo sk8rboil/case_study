@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905262395373",
+    "project_id": "presencr-68ffc",
+    "storage_bucket": "presencr-68ffc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905262395373:android:98272e074b3a84fb9941e4",
+        "android_client_info": {
+          "package_name": "com.example.my_presence_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905262395373-7io0mpdjg2qa9gico9r2v4hdbfftu55h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5VsGhr6oiorbSKn69TE-hQ8Wm0zvvZzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905262395373-7io0mpdjg2qa9gico9r2v4hdbfftu55h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

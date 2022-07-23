@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_presence_app/controllers/home_controller.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends GetView<HomeController> {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -16,12 +18,11 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'counter',
-              style: Theme.of(context).textTheme.headline4,
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/login_screen');
+              },
+              child: Text('Login Page'),
             ),
           ],
         ),
