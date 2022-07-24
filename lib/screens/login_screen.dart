@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_presence_app/controllers/addpage_controller.dart';
+import 'package:my_presence_app/controllers/createaccount_controller.dart';
 
-class MyloginScreen extends GetView<AddPageController> {
+class MyloginScreen extends StatelessWidget {
   const MyloginScreen({Key? key}) : super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class MyloginScreen extends GetView<AddPageController> {
             ),
             ElevatedButton(
               onPressed: () {
-                controller.addpage(context);
+                controller.createAccount(context);
               },
               child: Text('Login'),
             ),
