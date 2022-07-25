@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_presence_app/homepage.dart';
 import 'package:my_presence_app/screens/login_screen.dart';
+import 'package:my_presence_app/screens/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       getPages: [
-        GetPage(name: '/login_screen', page: () => MyloginScreen()),
+        GetPage(name: '/register_screen', page: () => RegisterScreen()),
+        GetPage(name: '/login_screen', page: () => MyLoginScreen()),
       ],
     );
   }

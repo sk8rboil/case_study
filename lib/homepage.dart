@@ -22,7 +22,13 @@ class MyHomePage extends GetView<HomeController> {
               onPressed: () {
                 Get.toNamed('/login_screen');
               },
-              child: Text('Login Page'),
+              child: Text('LOGIN'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/register_screen');
+              },
+              child: Text('Register'),
             ),
           ],
         ),
