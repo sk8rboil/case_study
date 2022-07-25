@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +9,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     final controller = Get.put((AddPageController()));
     return Scaffold(
       appBar: AppBar(
@@ -24,26 +25,59 @@ class RegisterScreen extends StatelessWidget {
               child: Form(
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
-                      controller: controller.usernameC,
-                      decoration: InputDecoration(
-                        labelText: 'username',
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                              controller: controller.usernameC,
+                              decoration: InputDecoration(
+                                labelText: 'username',
+                              ),
+                              keyboardType: TextInputType.name,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'กรุณากรอกชื่อผู้ใช้งาน';
+                                } else {
+                                  return null;
+                                }
+                              }),
+                          TextFormField(
+                              controller: controller.passwordC,
+                              decoration: InputDecoration(
+                                labelText: 'password',
+                              ),
+                              keyboardType: TextInputType.visiblePassword,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'กรุณากรอกรหัสผ่าน';
+                                } else if (value.isNotEmpty &&
+                                    value.length < 8) {
+                                  return 'กรุณากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร';
+                                } else {
+                                  return null;
+                                }
+                              }),
+                          TextFormField(
+                            controller: controller.emailC,
+                            decoration: InputDecoration(
+                              labelText: 'email',
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'กรุณากรอกอีเมล';
+                              } else if (!RegExp(
+                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                  .hasMatch(value)) {
+                                return 'กรุณาตรวจสอบอีเมลอีกครั้ง';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ],
                       ),
-                      keyboardType: TextInputType.name,
-                    ),
-                    TextFormField(
-                      controller: controller.passwordC,
-                      decoration: InputDecoration(
-                        labelText: 'password',
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                    TextFormField(
-                      controller: controller.emailC,
-                      decoration: InputDecoration(
-                        labelText: 'email',
-                      ),
-                      keyboardType: TextInputType.emailAddress,
                     ),
                   ],
                 ),
@@ -51,7 +85,12 @@ class RegisterScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                controller.createAccount(context);
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing Data')),
+                  );
+                  controller.createAccount(context);
+                }
               },
               child: Text('REGISTER'),
             ),
