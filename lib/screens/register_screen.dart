@@ -90,6 +90,7 @@ class RegisterScreen extends StatelessWidget {
                     const SnackBar(content: Text('Processing Data')),
                   );
                   controller.createAccount(context);
+                  Get.offAllNamed('/login_screen');
                 }
               },
               child: Text('REGISTER'),

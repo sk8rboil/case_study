@@ -1,16 +1,27 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_void_to_null
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_presence_app/homepage.dart';
 import 'package:my_presence_app/screens/login_screen.dart';
+import 'package:my_presence_app/screens/newpass_screen.dart';
+import 'package:my_presence_app/screens/resetpass_screen.dart';
 import 'package:my_presence_app/screens/register_screen.dart';
 
-void main() async {
+String initialroute = "/login_screen";
+Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
+  await Firebase.initializeApp().then((value) {
+    FirebaseAuth.instance.authStateChanges().listen((event) {
+      if (event != null) {
+        //login
+        initialroute = '/homepage';
+      }
+      runApp(const MyApp());
+    });
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -25,10 +36,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: MyHomePage(),
+      initialRoute: initialroute,
       getPages: [
+        GetPage(name: '/homepage', page: () => MyHomePage()),
         GetPage(name: '/register_screen', page: () => RegisterScreen()),
         GetPage(name: '/login_screen', page: () => MyLoginScreen()),
+        GetPage(name: '/resetpass_screen', page: () => MyResetPasswordScreen()),
+        GetPage(name: '/newpass_screen', page: () => MyNewPasswordScreen())
       ],
     );
   }

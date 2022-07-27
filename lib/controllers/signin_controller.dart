@@ -16,6 +16,9 @@ class SigninController extends GetxController {
           email: emailC.text,
           password: passwordC.text,
         );
+        if (credential.user != null) {
+          Get.offAllNamed('/homepage');
+        } else {}
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           showDialog(

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,6 +66,18 @@ class MyLoginScreen extends StatelessWidget {
                   }
                 },
                 child: Text('LOGIN'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Get.toNamed('/register_screen');
+                },
+                child: Text('REGISTER'),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  Get.toNamed('/newpass_screen');
+                },
+                child: Text('Reset Password'),
               ),
             ],
           ),

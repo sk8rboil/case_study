@@ -19,7 +19,7 @@ class AddPageController extends GetxController {
         passwordC.text.isNotEmpty &&
         emailC.text.isNotEmpty) {
       try {
-        final credential = await auth.createUserWithEmailAndPassword(
+        UserCredential credential = await auth.createUserWithEmailAndPassword(
           email: emailC.text,
           password: passwordC.text,
         );
@@ -32,6 +32,7 @@ class AddPageController extends GetxController {
             "email": emailC.text,
             "createAt": DateTime.now().toIso8601String(),
           });
+          credential.user!.sendEmailVerification();
         } else {}
       } on FirebaseAuthException catch (e) {
         /* if (e.code == 'weak-password') {
