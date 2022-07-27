@@ -5,12 +5,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_presence_app/controllers/home_controller.dart';
+import 'package:my_presence_app/controllers/signout_controller.dart';
 
 class MyHomePage extends GetView<HomeController> {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put((SignoutController()));
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -30,6 +32,12 @@ class MyHomePage extends GetView<HomeController> {
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             Text('WELCOME TO HOMEPAGE'),
+            ElevatedButton(
+              onPressed: () {
+                controller.signout();
+              },
+              child: Text('Logout'),
+            ),
           ],
         ),
       ),
