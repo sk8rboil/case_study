@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:my_presence_app/homepage.dart';
 import 'package:my_presence_app/screens/login_screen.dart';
 import 'package:my_presence_app/screens/newpass_screen.dart';
+import 'package:my_presence_app/screens/profile_screen.dart';
 import 'package:my_presence_app/screens/resetpass_screen.dart';
 import 'package:my_presence_app/screens/register_screen.dart';
 
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register_screen', page: () => RegisterScreen()),
         GetPage(name: '/login_screen', page: () => MyLoginScreen()),
         GetPage(name: '/resetpass_screen', page: () => MyResetPasswordScreen()),
-        GetPage(name: '/newpass_screen', page: () => MyNewPasswordScreen())
+        GetPage(name: '/newpass_screen', page: () => MyNewPasswordScreen()),
+        GetPage(name: '/profile_screen', page: () => MyProfileScreen()),
       ],
     );
   }

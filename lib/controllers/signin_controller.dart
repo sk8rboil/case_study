@@ -16,7 +16,9 @@ class SigninController extends GetxController {
           email: emailC.text,
           password: passwordC.text,
         );
+
         if (credential.user != null) {
+          print(credential);
           Get.offAllNamed('/homepage');
         } else {}
       } on FirebaseAuthException catch (e) {

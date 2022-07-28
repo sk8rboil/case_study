@@ -38,6 +38,12 @@ class MyHomePage extends GetView<HomeController> {
               },
               child: Text('Logout'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/profile_screen');
+              },
+              child: Text('profile'),
+            ),
           ],
         ),
       ),
