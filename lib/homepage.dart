@@ -20,7 +20,7 @@ class MyHomePage extends GetView<HomeController> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed('/newpass_screen');
+              Get.toNamed('/profile_screen');
             },
             icon: Icon(Icons.person),
           ),
@@ -32,18 +32,6 @@ class MyHomePage extends GetView<HomeController> {
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             Text('WELCOME TO HOMEPAGE'),
-            ElevatedButton(
-              onPressed: () {
-                controller.signout();
-              },
-              child: Text('Logout'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/profile_screen');
-              },
-              child: Text('profile'),
-            ),
           ],
         ),
       ),
