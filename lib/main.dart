@@ -10,6 +10,7 @@ import 'package:my_presence_app/screens/newpass_screen.dart';
 import 'package:my_presence_app/screens/profile_screen.dart';
 import 'package:my_presence_app/screens/resetpass_screen.dart';
 import 'package:my_presence_app/screens/register_screen.dart';
+import 'package:my_presence_app/screens/update_profile_screen.dart';
 
 String initialroute = "/login_screen";
 Future<Null> main() async {
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/resetpass_screen', page: () => MyResetPasswordScreen()),
         GetPage(name: '/newpass_screen', page: () => MyNewPasswordScreen()),
         GetPage(name: '/profile_screen', page: () => MyProfileScreen()),
+        GetPage(
+            name: '/updateprofile_screen', page: () => MyUpdateProfileScreen()),
       ],
     );
   }

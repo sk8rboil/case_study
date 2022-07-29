@@ -63,7 +63,12 @@ class MyProfileScreen extends StatelessWidget {
                     height: 10,
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(
+                        '/updateprofile_screen',
+                        arguments: user,
+                      );
+                    },
                     leading: Icon(Icons.person),
                     title: Text('Update Profile'),
                   ),

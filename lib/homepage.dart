@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_void_to_null, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_void_to_null, avoid_print, unused_local_variable
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
