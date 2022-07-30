@@ -74,7 +74,7 @@ class MyProfileScreen extends StatelessWidget {
                   ),
                   ListTile(
                     onTap: () {
-                      Get.toNamed('/resetpass_screen');
+                      Get.toNamed('/updatepass_screen');
                     },
                     leading: Icon(Icons.vpn_key),
                     title: Text('Update Password'),

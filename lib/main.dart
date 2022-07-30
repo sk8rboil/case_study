@@ -10,6 +10,7 @@ import 'package:my_presence_app/screens/newpass_screen.dart';
 import 'package:my_presence_app/screens/profile_screen.dart';
 import 'package:my_presence_app/screens/resetpass_screen.dart';
 import 'package:my_presence_app/screens/register_screen.dart';
+import 'package:my_presence_app/screens/update_password_screen.dart';
 import 'package:my_presence_app/screens/update_profile_screen.dart';
 
 String initialroute = "/login_screen";
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/profile_screen', page: () => MyProfileScreen()),
         GetPage(
             name: '/updateprofile_screen', page: () => MyUpdateProfileScreen()),
+        GetPage(
+            name: '/updatepass_screen', page: () => MyUpdatePasswordScreen()),
       ],
     );
   }
