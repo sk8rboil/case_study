@@ -42,7 +42,7 @@ class MyUpdateProfileScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              controller.updateProfile();
+              controller.updateProfile(user['uid'], context);
             },
             child: Text('UPDATE PROFILE'),
           ),
