@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_presence_app/controllers/update_pass_controller.dart';
 
 class MyUpdatePasswordScreen extends StatelessWidget {
   const MyUpdatePasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put((UpdatePasswordController()));
     return Scaffold(
       appBar: AppBar(
         title: Text('UPDATE PASSWORD'),
@@ -20,16 +23,22 @@ class MyUpdatePasswordScreen extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    controller: controller.currentpassC,
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'current password',
                     ),
                   ),
                   TextFormField(
+                    controller: controller.newpassC,
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'new password',
                     ),
                   ),
                   TextFormField(
+                    controller: controller.confirmpassC,
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'confirm password',
                     ),
@@ -39,7 +48,9 @@ class MyUpdatePasswordScreen extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.updatePass(context);
+            },
             child: Text('CONFIRM'),
           ),
         ],
