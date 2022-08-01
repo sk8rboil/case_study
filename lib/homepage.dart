@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_void_to_null, avoid_print, unused_local_variable
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,29 +15,40 @@ class MyHomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final controller = Get.put((SignoutController()));
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('DATA'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed('/profile_screen');
-            },
-            icon: Icon(Icons.person),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // ignore: prefer_const_literals_to_create_immutables
-          children: <Widget>[
-            Text('WELCOME TO HOMEPAGE'),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('DATA'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.toNamed('/profile_screen');
+              },
+              icon: Icon(Icons.person),
+            ),
           ],
         ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
+            children: <Widget>[
+              Text('WELCOME TO HOMEPAGE'),
+            ],
+          ),
+        ),
+        bottomNavigationBar: ConvexAppBar(
+          style: TabStyle.fixedCircle,
+
+          // ignore: prefer_const_literals_to_create_immutables
+          items: [
+            TabItem(icon: Icons.home, title: 'Home'),
+            TabItem(icon: Icons.map, title: 'Discovery'),
+            TabItem(icon: Icons.people, title: 'Add'),
+          ],
+          initialActiveIndex: 0, //optional, default as 0
+          onTap: (int i) => print('click index=$i'),
+        ));
+    // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
 

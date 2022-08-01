@@ -59,7 +59,9 @@ class MyProfileScreen extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 shape: CircleBorder(),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.pickImage();
+                              },
                               child: Icon(Icons.add),
                             ),
                           ],
