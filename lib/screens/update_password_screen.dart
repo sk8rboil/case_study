@@ -24,21 +24,21 @@ class MyUpdatePasswordScreen extends StatelessWidget {
                 children: <Widget>[
                   TextFormField(
                     controller: controller.currentpassC,
-                    obscureText: true,
+                    /* obscureText: true, */
                     decoration: InputDecoration(
                       labelText: 'current password',
                     ),
                   ),
                   TextFormField(
                     controller: controller.newpassC,
-                    obscureText: true,
+                    /* obscureText: true, */
                     decoration: InputDecoration(
                       labelText: 'new password',
                     ),
                   ),
                   TextFormField(
                     controller: controller.confirmpassC,
-                    obscureText: true,
+                    /* obscureText: true, */
                     decoration: InputDecoration(
                       labelText: 'confirm password',
                     ),
