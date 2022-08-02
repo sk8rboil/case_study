@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps, unnecessary_string_interpolations, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps, unnecessary_string_interpolations, sized_box_for_whitespace, prefer_void_to_null, empty_catches, unused_local_variable
 
 import 'dart:io';
 
@@ -18,11 +18,11 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-  File? file;
+  File? image;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final storage = s.FirebaseStorage.instance;
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final storage = s.FirebaseStorage.instance;
     final controller = Get.put((ProfileController()));
     return Scaffold(
       appBar: AppBar(
@@ -57,13 +57,13 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               child: Container(
                                 width: 100,
                                 height: 100,
-                                child: file == null
+                                child: image == null
                                     ? Image.network(
                                         "https://ui-avatars.com/api/?name=${user['username']}",
                                         fit: BoxFit.cover,
                                       )
                                     : Image.file(
-                                        file!,
+                                        image!,
                                         fit: BoxFit.cover,
                                       ),
                               ),
@@ -162,8 +162,32 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           .getImage(source: source, maxHeight: 500, maxWidth: 500);
 
       setState(() {
-        file = File(result!.path);
+        image = File(result!.path);
       });
+    } catch (e) {}
+  }
+
+  Future<void> updateImage(String uid) async {
+    // Create a storage reference from our app
+    final storageRef = s.FirebaseStorage.instance.ref();
+
+// Create a reference to "mountains.jpg"
+    final mountainsRef = storageRef.child("$uid/profile.ext");
+
+// Create a reference to 'images/mountains.jpg'
+    final mountainImagesRef = storageRef.child("images/mountains.jpg");
+
+// While the file names are the same, the references point to different files
+    assert(mountainsRef.name == mountainImagesRef.name);
+    assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
+
+    try {
+      if (image != null) {
+        /* Directory appDocDir = await getApplicationDocumentsDirectory();
+        String filePath = '${appDocDir.absolute}/file-to-upload.png'; */
+        File file = File(image!.path);
+        await mountainsRef.putFile(file);
+      }
     } catch (e) {}
   }
 }
