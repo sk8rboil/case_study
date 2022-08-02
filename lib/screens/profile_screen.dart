@@ -1,16 +1,28 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps, unnecessary_string_interpolations, sized_box_for_whitespace
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:my_presence_app/controllers/profile_controller.dart';
 import 'package:my_presence_app/homepage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as s;
 
-class MyProfileScreen extends StatelessWidget {
+class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<MyProfileScreen> createState() => _MyProfileScreenState();
+}
+
+class _MyProfileScreenState extends State<MyProfileScreen> {
+  File? file;
+  @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final storage = s.FirebaseStorage.instance;
     final controller = Get.put((ProfileController()));
     return Scaffold(
       appBar: AppBar(
@@ -45,14 +57,15 @@ class MyProfileScreen extends StatelessWidget {
                               child: Container(
                                 width: 100,
                                 height: 100,
-                                child: Image.network(
-                                  user["profile"] != null
-                                      ? user["profile"] != ""
-                                          ? user["profile"]
-                                          : 'https://ui-avatars.com/api/?name={$user["username"]}'
-                                      : 'https://ui-avatars.com/api/?name={$user["username"]}',
-                                  fit: BoxFit.cover,
-                                ),
+                                child: file == null
+                                    ? Image.network(
+                                        "https://ui-avatars.com/api/?name=${user['username']}",
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        file!,
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                             ),
                             ElevatedButton(
@@ -60,7 +73,32 @@ class MyProfileScreen extends StatelessWidget {
                                 shape: CircleBorder(),
                               ),
                               onPressed: () {
-                                controller.pickImage();
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            chooseImage(ImageSource.camera);
+                                            Get.back();
+                                          },
+                                          child: Text('camera'),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            chooseImage(ImageSource.gallery);
+                                            Get.back();
+                                          },
+                                          child: Text('gallery'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
                               },
                               child: Icon(Icons.add),
                             ),
@@ -115,5 +153,17 @@ class MyProfileScreen extends StatelessWidget {
             }
           }),
     );
+  }
+
+  Future<Null> chooseImage(ImageSource source) async {
+    try {
+      var result = await ImagePicker()
+          // ignore: deprecated_member_use
+          .getImage(source: source, maxHeight: 500, maxWidth: 500);
+
+      setState(() {
+        file = File(result!.path);
+      });
+    } catch (e) {}
   }
 }

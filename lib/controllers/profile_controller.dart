@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -12,6 +13,7 @@ class ProfileController extends GetxController {
     yield* firestore.collection("users").doc(uid).snapshots();
   }
 
+  /* XFile? image;
   final ImagePicker _picker = ImagePicker();
   void pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -21,5 +23,6 @@ class ProfileController extends GetxController {
     } else {
       print(image);
     }
-  }
+  } */
+
 }
