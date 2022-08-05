@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_void_to_null, avoid_print, unused_local_variable, avoid_unnecessary_containers, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_void_to_null, avoid_print, unused_local_variable, avoid_unnecessary_containers, non_constant_identifier_names, unnecessary_string_interpolations
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_presence_app/controllers/home_controller.dart';
 import 'package:my_presence_app/controllers/signout_controller.dart';
 
@@ -57,13 +58,14 @@ class MyHomePage extends GetView<HomeController> {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey.shade300,
                     ),
-                    height: 75,
+                    height: 100,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +75,21 @@ class MyHomePage extends GetView<HomeController> {
                             Text('data'),
                           ],
                         ),
-                        Text('${DateTime.now()}')
+                        Text(
+                            '${DateFormat.yMMMMEEEEd().format(DateTime.now())}'),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: <Widget>[
+                            Text('data'),
+                            Text('data'),
+                          ],
+                        ),
+                        Text(
+                            '${DateFormat.yMMMMEEEEd().format(DateTime.now())}'),
                       ],
                     ),
                   ),
