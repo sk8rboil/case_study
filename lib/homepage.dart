@@ -71,12 +71,17 @@ class MyHomePage extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           // ignore: prefer_const_literals_to_create_immutables
                           children: <Widget>[
-                            Text('data'),
-                            Text('data'),
+                            Text(
+                              'DATA1',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '${DateFormat.yMMMMEEEEd().format(DateTime.now())}',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
-                        Text(
-                            '${DateFormat.yMMMMEEEEd().format(DateTime.now())}'),
+                        Text('${DateFormat.jms().format(DateTime.now())}'),
                         SizedBox(
                           height: 10,
                         ),
@@ -84,12 +89,13 @@ class MyHomePage extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           // ignore: prefer_const_literals_to_create_immutables
                           children: <Widget>[
-                            Text('data'),
-                            Text('data'),
+                            Text(
+                              'DATA2',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
-                        Text(
-                            '${DateFormat.yMMMMEEEEd().format(DateTime.now())}'),
+                        Text('${DateFormat.jms().format(DateTime.now())}'),
                       ],
                     ),
                   ),
